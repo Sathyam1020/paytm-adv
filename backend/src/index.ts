@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import accountRoutes from "./routes/account";
 import userRoutes from "./routes/user"
 const app = express();
@@ -6,6 +7,12 @@ const app = express();
 const PORT = 4000;
 
 app.use(express.json());
+app.use(
+    cors({
+        origin: "*",
+        credentials: true,
+    })
+);
 
 app.use('/api/v1/account', accountRoutes);
 app.use('/api/v1/user', userRoutes);

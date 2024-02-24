@@ -113,7 +113,7 @@ const signin = async (req: Request, res: Response) => {
     }
 }
 
-const bulkSearch = async(req: Request, res: Response){
+const bulkSearch = async(req: Request, res: Response) => {
     try {
         const filter = String(req.query.filter || "");
 
