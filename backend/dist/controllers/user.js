@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.bulkSearch = exports.signin = exports.signup = void 0;
+exports.getAllUsers = exports.bulkSearch = exports.signin = exports.signup = void 0;
 const db_config_1 = __importDefault(require("../db.config"));
 const zod_1 = __importDefault(require("zod"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -148,3 +148,20 @@ const bulkSearch = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.bulkSearch = bulkSearch;
+const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const users = yield db_config_1.default.user.findMany({
+            select: {
+                id: true,
+                username: true,
+                email: true
+            },
+        });
+        res.status(200).json(users);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+exports.getAllUsers = getAllUsers;

@@ -8,7 +8,6 @@ import {InputBox} from "../components/InputBox.tsx";
 import {Button} from "../components/Button.tsx";
 import {BottomWarning} from "../components/BottomWarning.tsx";
 
-
 const Signup = () => {
 
     const [firstName, setFirstName] = useState("");

@@ -149,4 +149,21 @@ const bulkSearch = async(req: Request, res: Response) => {
     }
 }
 
-export { signup, signin, bulkSearch};
+const getAllUsers = async( req: Request, res: Response) => {
+    try {
+        const users = await prisma.user.findMany({
+            select: {
+                id: true,
+                username: true,
+                email: true
+            },
+        });
+
+        res.status(200).json(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+export { signup, signin, bulkSearch, getAllUsers};
